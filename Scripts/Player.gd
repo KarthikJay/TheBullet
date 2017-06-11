@@ -8,6 +8,8 @@ export var MOTION_SPEED = 350 #export means public? means that the node extends 
 onready var bullet = preload("res://Bullet.tscn")
 onready var root_node = get_node(".")
 
+onready var shotsFiredLabel = get_node("HUD").get_node("HudCanvas").get_node("ShotsLabel")
+
 var RayNode
 var mouseLoc
 var count
@@ -40,6 +42,7 @@ func _input(event):
 				cur.set_dir(get_pos(), mouseLoc)
 				root_node.get_parent().add_child(cur)
 				count = count - 1
+				shotsFiredLabel._incrementShot()
 
 func _fixed_process(delta):
 	# every frame execution
